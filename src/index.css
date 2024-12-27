@@ -1,0 +1,12 @@
+/* index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.scroll-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #4CAF50 #f1f1f1;
+  }
