@@ -1,0 +1,42 @@
+stages:
+  - test
+  - build
+  - deploy
+
+test-job:
+  image: node:latest
+  stage: test
+  script:
+    - npm install
+    - npm test
+
+build-job:
+  image: node:latest
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - build/
+
+deploy-job:
+  image: docker:27.4.1-cli
+  stage: deploy
+  services:
+      - docker:dind
+
+  variables:
+      DOCKER_HOST: tcp://docker:2375
+      DOCKER_TLS_CERTDIR: ""
+
+  script:
+    - echo "Information Docker..."
+    - docker version
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:latest .
+    - docker push $CI_REGISTRY_IMAGE:latest
+    - docker pull $CI_REGISTRY_IMAGE:latest
+    - docker login -u your_email@example.com -p $DOCKER_HUB_TOKEN
+    - docker tag $CI_REGISTRY_IMAGE:latest your-dockerhub-username/repository-name
+    - docker push your-dockerhub-username/repository-name
