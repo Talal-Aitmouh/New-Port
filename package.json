@@ -4,18 +4,18 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "lint": "eslint .",
-  "preview": "vite preview",
-  "test": "echo 'No tests available' && exit 0"
-}
-,
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test": "echo 'No tests available' && exit 0"
+  },
   "dependencies": {
     "framer-motion": "^11.11.11",
     "lucide-react": "^0.456.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^6.28.0"
   },
   "devDependencies": {

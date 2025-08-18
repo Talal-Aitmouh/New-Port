@@ -5,7 +5,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}", // Ensure this covers your JS/TS/JSX/TSX files
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        inria: ['Inria Serif', 'serif'],
+      }
+    },
   },
   plugins: [],
 }

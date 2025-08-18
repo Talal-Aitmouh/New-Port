@@ -45,7 +45,7 @@ const Portfolio = () => {
   </motion.header>
   
   {/* Main Content */}
-  <div className="w-full flex flex-col md:flex-row justify-between items-start  mx-auto ">
+  <div className=" ">
     <Outlet />
   </div>
 </div>
