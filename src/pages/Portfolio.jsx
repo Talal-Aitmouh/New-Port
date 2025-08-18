@@ -56,7 +56,7 @@ export default function Portfolio() {
         className="col-start-5 col-end-7 row-start-1 row-end-5 flex items-center justify-center"
       >
         <img
-          src="/placeholder.svg?height=400&width=300"
+          src="/lo.png"
           alt="Profile"
           className="w-full h-full object-cover rounded-3xl"
         />
