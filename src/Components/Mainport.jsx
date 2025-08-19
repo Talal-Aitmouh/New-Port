@@ -23,8 +23,8 @@ const toggleImageVisibility = (index) => {
 }
 
   return (
-    <div className=" bg-[#0A0A0A] text-white relative overflow-hidden px-8">
-      <div className="grid grid-cols-9 grid-rows-8 gap-4 py-8 h-screen">
+    <div className=" bg-[#0A0A0A] text-white relative overflow-hidden min-h-screen">
+      <div className="grid grid-cols-9 grid-rows-8 gap-y-[10px] gap-x-[10px] p-4 h-screen">
         {/* Navbar */}
         <motion.nav
           initial={{ y: -50, opacity: 0 }}

@@ -29,8 +29,8 @@ export default function Projects() {
   ]
 
   return (
-    <div className="h-screen bg-[#0A0A0A] text-white relative overflow-hidden px-8">
-      <div className="grid grid-cols-[repeat(9,1fr)] grid-rows-[repeat(8,1fr)] gap-y-[10px] gap-x-[10px] h-full py-8">
+    <div className="h-screen bg-[#0A0A0A] text-white relative overflow-hidden">
+      <div className="grid grid-cols-[repeat(9,1fr)] grid-rows-[repeat(8,1fr)] gap-y-[10px] gap-x-[10px] h-full p-4">
         {/* 1. Header - row 1, col 1-10 */}
         <motion.nav
           initial={{ y: -50, opacity: 0 }}
