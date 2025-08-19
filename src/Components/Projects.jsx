@@ -14,7 +14,8 @@ export default function Projects() {
       description: "A single-page responsive website for MVMT watches featuring a clean minimalist design and a product carousel.",
       technologies: ["React.js", "Tailwind CSS"],
       github: "https://github.com/yourusername/mvmt",
-      demo: "https://mvmt-demo.com"
+      demo: "https://mvmt-demo.com",
+      tirbo: "/cap.png"
     },
     {
       id: 2,
@@ -23,7 +24,8 @@ export default function Projects() {
       description: "A 3D car showcase for Porsche 911 Carrera with smooth animations and interactive controls.",
       technologies: ["Three.js", "React", "Vite"],
       github: "https://github.com/yourusername/porsche",
-      demo: "https://porsche-demo.com"
+      demo: "https://porsche-demo.com",
+      tirbo: "/cap2.png"
     },
     {
       id: 3,
@@ -32,16 +34,28 @@ export default function Projects() {
       description: "A full-stack task management app with CRUD operations and drag-and-drop task organization.",
       technologies: ["React", "Redux Toolkit", "Node.js", "MongoDB"],
       github: "https://github.com/yourusername/task-manager",
-      demo: "https://task-manager-demo.com"
+      demo: "https://task-manager-demo.com",
+      tirbo: "/cap3.png"
     },
     {
       id: 4,
       image: "/sun.png",
-      title: "Nature Portfolio",
-      description: "A personal portfolio showcasing nature photography with smooth transitions and galleries.",
+      title: "Weather App",
+      description: "A weather application that provides real-time weather updates and forecasts using a third-party API.",
       technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
       github: "https://github.com/yourusername/nature-portfolio",
-      demo: "https://nature-portfolio.com"
+      demo: "https://nature-portfolio.com",
+      tirbo: "/cap4.png"
+    },
+    {
+      id: 5,
+      image: "/exam.png",
+      title: "Exam Craft",
+      description: "a comprehensive exam management system that allows users to create, manage, and take exams online.",
+      technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      github: "https://github.com/yourusername/nature-portfolio",
+      demo: "https://nature-portfolio.com",
+      tirbo: "/cap5.png"
     },
   ]
 
@@ -81,16 +95,16 @@ export default function Projects() {
           initial={{ x: 80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="col-start-7 col-end-10 row-start-2 row-end-8 bg-[#0D1215] rounded-2xl p-2 overflow-y-auto"
+          className="col-start-7 col-end-10 row-start-2 row-end-8 bg-[#0D1215] rounded-2xl p-2 overflow-y-auto custom-scrollbar"
         >
           {selectedProject && (
             <div className="space-y-6">
               {/* Project showcase image */}
               <div className="rounded-lg p-4">
                 <img
-                  src={selectedProject.image}
+                  src={selectedProject.tirbo}
                   alt={selectedProject.title}
-                  className="w-full h-48 object-cover rounded"
+                  className="w-full max-h-64 object-cover rounded"
                 />
               </div>
 
@@ -147,7 +161,7 @@ export default function Projects() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="col-start-1 col-end-7 row-start-3 row-end-8 bg-[#0D1215] rounded-2xl p-6"
         >
-          <div className="grid grid-cols-2 gap-4 h-full">
+          <div className="grid grid-cols-3 gap-4 h-full">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -204,6 +218,30 @@ export default function Projects() {
           </div>
         </motion.div>
       </div>
+      <style jsx>{`
+        .custom-scrollbar {
+          scrollbar-width: thin;
+          scrollbar-color: #374151 #1f2937;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: #1f2937;
+          border-radius: 3px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #374151;
+          border-radius: 3px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #4b5563;
+        }
+      `}</style>
     </div>
   )
 }

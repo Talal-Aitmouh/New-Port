@@ -1,13 +1,46 @@
 "use client"
 import { Github, Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react"
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
 import Navbar from "./Navbart"
 
 export default function ContactPage() {
+  // ✅ List of testimonials
+  const testimonials = [
+    {
+      name: "Anass Benjaloune",
+      role: "Product Manager at Nexadev",
+      text: "Talal transformed our complex app into an intuitive masterpiece. Our user engagement jumped 40% overnight. Exceptional work.",
+      avatar: "https://blog.g3fashion.com/wp-content/uploads/2021/06/mens-casual-shirts.jpg", // ✅ replace with actual image in public/avatars/
+    },
+    {
+      name: "Said El Idrissi",
+      role: "UI/UX Designer",
+      text: "Working with Talal was a pleasure. His attention to detail and commitment to creating a seamless experience is inspiring.",
+      avatar: "https://sheshouldrun.org/wp-content/uploads/X44LZ559_400x400.png",
+    },
+    {
+      name: "Youssef Amrani",
+      role: "CEO of TechFlow",
+      text: "Talal consistently delivers high-quality results. His code is clean, efficient, and his design sense is top-notch.",
+      avatar: "https://www.datocms-assets.com/157537/1746630549-for-men-banner.jpg?auto=format,compress&w=1920",
+    },
+  ]
+
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+    }, 4000) // ⏱️ change testimonial every 4s
+    return () => clearInterval(interval)
+  }, [testimonials.length])
+
   return (
     <div className="h-screen bg-[#0A0A0A] text-white relative overflow-hidden">
       <div className="grid grid-cols-[repeat(9,1fr)] grid-rows-[repeat(8,1fr)] gap-y-[10px] gap-x-[10px] h-full p-4">
-        {/* 1. Header - row 1-2, col 1-10 */}
+        
+        {/* Header */}
         <motion.nav
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -17,7 +50,7 @@ export default function ContactPage() {
           <Navbar/>
         </motion.nav>
 
-        {/* 2. Ready to take... - row 2-4, col 1-10 */}
+        {/* Hero text */}
         <motion.div
           initial={{ x: -80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -33,7 +66,7 @@ export default function ContactPage() {
           </h1>
         </motion.div>
 
-        {/* 3. Contact Information - col 1-5, row 4-7 */}
+        {/* Contact Info */}
         <motion.div
           initial={{ x: -60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -64,7 +97,7 @@ export default function ContactPage() {
               { icon: Instagram, label: "Instagram" },
               { icon: Github, label: "GitHub" },
               { icon: Linkedin, label: "LinkedIn" },
-            ].map((social, index) => (
+            ].map((social) => (
               <motion.button
                 key={social.label}
                 whileHover={{ scale: 1.1, y: -2 }}
@@ -77,7 +110,7 @@ export default function ContactPage() {
           </div>
         </motion.div>
 
-        {/* 4. Get in touch form - col 5-10, row 4-9 */}
+        {/* Form */}
         <motion.div
           initial={{ x: 60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -128,25 +161,29 @@ export default function ContactPage() {
           </form>
         </motion.div>
 
-        {/* 5. Testimonials - col 1-5, row 7-9 */}
+        {/* ✅ Rotating Testimonials */}
         <motion.div
-          initial={{ y: 60, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          key={currentIndex} // 🔑 so animation triggers
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -30 }}
+          transition={{ duration: 0.6 }}
           className="col-start-1 col-end-5 row-start-7 row-end-9 bg-[#0D1215] rounded-2xl p-6"
         >
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
-              <span className="text-lg font-semibold">A</span>
-            </div>
+            {/* Avatar image */}
+            <img
+              src={testimonials[currentIndex].avatar}
+              alt={testimonials[currentIndex].name}
+              className="w-12 h-12 rounded-full object-cover flex-shrink-0"
+            />
 
             <div>
-              <h3 className="font-semibold text-lg mb-1">Anass benjaloune</h3>
-              <p className="text-gray-400 text-sm mb-4">Product Manager of Nexadev</p>
+              <h3 className="font-semibold text-lg mb-1">{testimonials[currentIndex].name}</h3>
+              <p className="text-gray-400 text-sm mb-4">{testimonials[currentIndex].role}</p>
 
               <blockquote className="text-gray-300 leading-relaxed">
-                "Talal transformed our complex app into an intuitive masterpiece. Our user engagement jumped 40%
-                overnight. Exceptional work."
+                "{testimonials[currentIndex].text}"
               </blockquote>
             </div>
           </div>
