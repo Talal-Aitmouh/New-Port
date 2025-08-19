@@ -1,7 +1,7 @@
 "use client"
 import { ChevronDown, Mail, Github, Linkedin, Instagram } from "lucide-react"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Navbar from "./Navbart"
 
 export default function About() {
@@ -9,6 +9,30 @@ export default function About() {
   const [experienceOpen, setExperienceOpen] = useState(false)
   const [educationOpen, setEducationOpen] = useState(false)
   const [certificationOpen, setCertificationOpen] = useState(false)
+
+  const achievements = [
+    { number: "+24", text: "Completed Projects" },
+    
+    
+    
+    { number: "∞", text: "Passion for Learning" },
+    { text: "Experience with Responsive Design" },
+    { number: "3", text: "Years Experience" },
+  { text: "Strong UI/UX Design Skills" },
+  { number: "90%", text: "Positive Client Feedback" },
+  { text: "Interactive & Engaging Interfaces" },
+  { number: "4", text: "Team Projects" },
+  { text: "Focus on Accessibility & Inclusivity" },
+  ]
+
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % achievements.length)
+    }, 2000) // ⏱️ change every 1 second
+    return () => clearInterval(interval)
+  }, [achievements.length])
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white relative overflow-hidden">
@@ -219,16 +243,16 @@ export default function About() {
           className="col-start-5 col-end-7 row-start-6 row-end-9 flex flex-col items-center justify-center bg-[#0D1215] rounded-2xl p-6"
         >
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 200 }}
+            key={currentIndex} // 🔑 important so framer detects change
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <div className="text-6xl font-light mb-2">+24</div>
+            <div className="text-6xl font-light mb-2">{achievements[currentIndex].number}</div>
             <div className="text-lg text-gray-300">
-              Completed
-              <br />
-              Projects
+              {achievements[currentIndex].text}
             </div>
           </motion.div>
         </motion.div>
