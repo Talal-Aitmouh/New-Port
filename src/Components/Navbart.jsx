@@ -1,13 +1,18 @@
 "use client"
-import { Link } from "react-router-dom" // or "next/link" if using Next.js
+import { NavLink } from "react-router-dom"
 
 export default function Navbar() {
+  const linkClass = ({ isActive }) =>
+    `transition-colors ${
+      isActive ? "text-[#fff] font-semibold" : "text-gray-300 hover:text-white"
+    }`
+
   return (
     <div className="flex gap-12 text-sm tracking-wider justify-center items-center w-full">
-            <Link to={"/"} className="hover:text-gray-300 transition-colors">HOME</Link>
-            <Link to={"/projects"} className="hover:text-gray-300 transition-colors">PROJECTS</Link>
-            <Link to={"/about"} className="hover:text-gray-300 transition-colors">ABOUT</Link>
-            <Link to={"/contact"} className="hover:text-gray-300 transition-colors">CONTACT</Link>
-          </div>
+      <NavLink to="/" className={linkClass}>HOME</NavLink>
+      <NavLink to="/projects" className={linkClass}>PROJECTS</NavLink>
+      <NavLink to="/about" className={linkClass}>ABOUT</NavLink>
+      <NavLink to="/contact" className={linkClass}>CONTACT</NavLink>
+    </div>
   )
 }

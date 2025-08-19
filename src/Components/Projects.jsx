@@ -3,6 +3,7 @@ import { Github, ExternalLink } from "lucide-react"
 import { motion } from "framer-motion"
 import { FaSquareBehance } from "react-icons/fa6"
 import Navbar from "./Navbart"
+import { useState } from "react"
 
 export default function Projects() {
   const projects = [
@@ -10,38 +11,58 @@ export default function Projects() {
       id: 1,
       image: "/mvmt.png",
       title: "Chronos",
+      description: "A single-page responsive website for MVMT watches featuring a clean minimalist design and a product carousel.",
+      technologies: ["React.js", "Tailwind CSS"],
+      github: "https://github.com/yourusername/mvmt",
+      demo: "https://mvmt-demo.com"
     },
     {
       id: 2,
       image: "/porsche.png",
       title: "911 Carrera",
+      description: "A 3D car showcase for Porsche 911 Carrera with smooth animations and interactive controls.",
+      technologies: ["Three.js", "React", "Vite"],
+      github: "https://github.com/yourusername/porsche",
+      demo: "https://porsche-demo.com"
     },
     {
       id: 3,
       image: "/task.png",
       title: "Task Manager",
+      description: "A full-stack task management app with CRUD operations and drag-and-drop task organization.",
+      technologies: ["React", "Redux Toolkit", "Node.js", "MongoDB"],
+      github: "https://github.com/yourusername/task-manager",
+      demo: "https://task-manager-demo.com"
     },
     {
       id: 4,
       image: "/sun.png",
       title: "Nature Portfolio",
+      description: "A personal portfolio showcasing nature photography with smooth transitions and galleries.",
+      technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      github: "https://github.com/yourusername/nature-portfolio",
+      demo: "https://nature-portfolio.com"
     },
   ]
+
+  // track the selected project
+  const [selectedProject, setSelectedProject] = useState(projects[0])
 
   return (
     <div className="h-screen bg-[#0A0A0A] text-white relative overflow-hidden">
       <div className="grid grid-cols-[repeat(9,1fr)] grid-rows-[repeat(8,1fr)] gap-y-[10px] gap-x-[10px] h-full p-4">
-        {/* 1. Header - row 1, col 1-10 */}
+        
+        {/* 1. Header */}
         <motion.nav
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
           className="col-start-1 col-end-10 row-start-1 row-end-2 flex justify-center items-center bg-[#0D1215] rounded-2xl"
         >
-          <Navbar/>
+          <Navbar />
         </motion.nav>
 
-        {/* 2. Hero text - col 1-7, row 2-4 */}
+        {/* 2. Hero text */}
         <motion.div
           initial={{ x: -80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -55,61 +76,71 @@ export default function Projects() {
           </h1>
         </motion.div>
 
-        {/* 3. Project details - col 7-10, row 2-8 */}
+        {/* 3. Project details */}
         <motion.div
           initial={{ x: 80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
           className="col-start-7 col-end-10 row-start-2 row-end-8 bg-[#0D1215] rounded-2xl p-2 overflow-y-auto"
         >
-          <div className="space-y-6">
-            {/* Project showcase image */}
-            <div className=" rounded-lg p-4">
-              <img
-                src="/cap.png"
-                alt="MVMT Watch Website"
-                className="w-full h-48 object-cover rounded"
-              />
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-semibold mb-2">MVMT Watch Website</h2>
-              <p className="text-gray-300 text-sm mb-4">
-                A single-page responsive website for MVMT watches featuring a clean minimalist design and a product
-                carousel.
-              </p>
-
-              <div className="mb-6">
-                <h3 className="text-lg font-medium mb-3">Technologies Used</h3>
-                <ul className="text-sm text-gray-300 space-y-1">
-                  <li>• React.js</li>
-                  <li>• Tailwind CSS</li>
-                </ul>
+          {selectedProject && (
+            <div className="space-y-6">
+              {/* Project showcase image */}
+              <div className="rounded-lg p-4">
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  className="w-full h-48 object-cover rounded"
+                />
               </div>
 
-              <div className="flex gap-3">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white rounded-full px-4 py-2 text-sm transition-all duration-300"
-                >
-                  <Github className="w-4 h-4" />
-                  Github
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white rounded-full px-4 py-2 text-sm transition-all duration-300"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Demo
-                </motion.button>
+              <div>
+                <h2 className="text-2xl font-semibold mb-2">{selectedProject.title}</h2>
+                <p className="text-gray-300 text-sm mb-4">{selectedProject.description}</p>
+
+                <div className="mb-6">
+                  <h3 className="text-lg font-medium mb-3">Technologies Used</h3>
+                  <ul className="text-sm text-gray-300 space-y-1">
+                    {selectedProject.technologies.map((tech, index) => (
+                      <li key={index}>• {tech}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex gap-3">
+                  {selectedProject.github && (
+                    <motion.a
+                      href={selectedProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white rounded-full px-4 py-2 text-sm transition-all duration-300"
+                    >
+                      <Github className="w-4 h-4" />
+                      Github
+                    </motion.a>
+                  )}
+                  {selectedProject.demo && (
+                    <motion.a
+                      href={selectedProject.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white rounded-full px-4 py-2 text-sm transition-all duration-300"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Demo
+                    </motion.a>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </motion.div>
 
-        {/* 4. Images section - col 1-7, row 4-8 */}
+        {/* 4. Images section */}
         <motion.div
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -124,10 +155,11 @@ export default function Projects() {
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
+                onClick={() => setSelectedProject(project)} // 👈 update details on click
                 className="relative group cursor-pointer rounded-lg overflow-hidden"
               >
                 <img
-                  src={project.image || "/placeholder.svg"}
+                  src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover"
                 />
@@ -139,7 +171,7 @@ export default function Projects() {
           </div>
         </motion.div>
 
-        {/* 5. Call to action - col 1-10, row 8-9 */}
+        {/* 5. Call to action */}
         <motion.div
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -149,22 +181,26 @@ export default function Projects() {
           <h2 className="text-2xl font-light">Like my work? See more on</h2>
 
           <div className="flex gap-4">
-            <motion.button
+            <motion.a
+              href="https://github.com/yourusername"
+              target="_blank"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white rounded-full px-6 py-3 transition-all duration-300"
             >
               <Github className="w-5 h-5" />
               Github
-            </motion.button>
-            <motion.button
+            </motion.a>
+            <motion.a
+              href="https://www.behance.net/yourusername"
+              target="_blank"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white rounded-full px-6 py-3 transition-all duration-300"
             >
               <FaSquareBehance className="w-5 h-5" />
               Behance
-            </motion.button>
+            </motion.a>
           </div>
         </motion.div>
       </div>
