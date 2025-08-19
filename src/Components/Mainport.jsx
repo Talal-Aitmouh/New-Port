@@ -2,6 +2,7 @@ import { ArrowUpRight, ArrowDown } from "lucide-react"
 import avatar from '../../public/lo.png'
 import { motion } from "framer-motion"
 import { useState } from "react"
+import Navbar from "./Navbart"
 
 export default function Portfolio() {
   const projects = [
@@ -31,11 +32,7 @@ const toggleImageVisibility = (index) => {
           transition={{ duration: 0.6 }}
           className="col-span-9 row-start-1 flex justify-center items-center bg-[#0D1215] rounded-3xl"
         >
-          <div className="flex gap-12 text-sm tracking-wider justify-center items-center w-full">
-            <a href="#" className="hover:text-gray-300 transition-colors">PROJECTS</a>
-            <a href="#" className="hover:text-gray-300 transition-colors">ABOUT</a>
-            <a href="#" className="hover:text-gray-300 transition-colors">CONTACT</a>
-          </div>
+          <Navbar/>
         </motion.nav>
 
         {/* Hero text */}

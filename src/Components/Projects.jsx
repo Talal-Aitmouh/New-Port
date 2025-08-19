@@ -2,6 +2,7 @@
 import { Github, ExternalLink } from "lucide-react"
 import { motion } from "framer-motion"
 import { FaSquareBehance } from "react-icons/fa6"
+import Navbar from "./Navbart"
 
 export default function Projects() {
   const projects = [
@@ -37,17 +38,7 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="col-start-1 col-end-10 row-start-1 row-end-2 flex justify-center items-center bg-[#0D1215] rounded-2xl"
         >
-          <div className="flex gap-12 text-sm tracking-wider">
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              PROJECTS
-            </a>
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              ABOUT
-            </a>
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              CONTACT
-            </a>
-          </div>
+          <Navbar/>
         </motion.nav>
 
         {/* 2. Hero text - col 1-7, row 2-4 */}

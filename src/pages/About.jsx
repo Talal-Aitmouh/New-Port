@@ -81,7 +81,7 @@ export default function About() {
         initial={{ x: 80, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.2 }}
-        className="col-start-7 col-end-10 row-start-1 row-end-8 bg-[#0D1215] rounded-2xl p-6 overflow-y-auto"
+        className="col-start-7 col-end-10 row-start-1 row-end-10 bg-[#0D1215] rounded-2xl p-6 overflow-y-auto"
       >
         <div className="space-y-4">
           {/* Skills */}
@@ -190,7 +190,7 @@ export default function About() {
         initial={{ y: 60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="col-start-1 col-end-5 row-start-5 row-end-8 flex flex-col justify-center bg-[#0D1215] rounded-2xl p-6"
+        className="col-start-1 col-end-5 row-start-5 row-end-10 flex flex-col justify-center bg-[#0D1215] rounded-2xl p-6"
       >
         <p className="text-gray-300 text-sm leading-relaxed">
           My name is Talal Aitmouh, I am a 22-year-old Moroccan currently living in Ouarzazate, Morocco. I am available
@@ -204,7 +204,7 @@ export default function About() {
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.4 }}
-        className="col-start-5 col-end-7 row-start-5 row-end-8 flex flex-col items-center justify-center bg-[#0D1215] rounded-2xl p-6"
+        className="col-start-5 col-end-7 row-start-5 row-end-10 flex flex-col items-center justify-center bg-[#0D1215] rounded-2xl p-6"
       >
         <motion.div
           initial={{ scale: 0 }}

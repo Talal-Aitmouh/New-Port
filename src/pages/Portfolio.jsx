@@ -3,13 +3,14 @@ import { ArrowUpRight, ArrowDown } from "lucide-react"
 import { motion } from "framer-motion"
 import { useState } from "react"
 
+
 export default function Portfolio() {
   const projects = [
-    { name: "Hero", image: "../../public/hero.png", hasImage: false },
-    { name: "FleckNest", image: "../../public/flecknest.png", hasImage: true, demo: "https://flecknest.netlify.app/" },
-    { name: "SuniFy", image: "../../public/sun.png", hasImage: true, demo: "https://sunify.netlify.app/" },
-    { name: "Sane", image: "../../public/medusa.png", hasImage: true, demo: "https://sanemedusa.netlify.app/" },
-  ]
+  { name: "Hero", image: "../../public/hero.png", hasImage: false },
+  { name: "FleckNest", image: "../../public/flecknest.png", hasImage: true, demo: "https://flecknest.netlify.app/" },
+  { name: "SuniFy", image: "/sun.png", hasImage: true, demo: "https://sunify.netlify.app/" },
+  { name: "Sane", image: "../../public/medusa.png", hasImage: true, demo: "https://sanemedusa.netlify.app/" },
+]
 
   const [visibleImages, setVisibleImages] = useState(projects.map(() => false))
 
@@ -22,6 +23,7 @@ export default function Portfolio() {
   }
 
   return (
+    <div className=" p-4 bg-[#0A0A0A]">
     <div className="grid grid-cols-9 grid-rows-7 gap-4 h-full">
       {/* Hero text */}
       <motion.div
@@ -63,55 +65,57 @@ export default function Portfolio() {
       </motion.div>
 
       {/* Projects - Fixed height with scroll */}
-      <div className="col-start-7 col-end-10 row-start-1 row-end-7 bg-[#0D1215] rounded-3xl overflow-hidden">
-        <div className="h-full overflow-y-auto custom-scrollbar">
-          <div className="min-h-full flex flex-col justify-start">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className={`group ${index !== 0 ? "border-t border-gray-700/40" : ""}`}
-              >
-                <div className="p-6 space-y-4">
-                  <div className="flex justify-between items-center cursor-pointer">
-                    <h3 className="text-lg text-white" onClick={() => toggleImageVisibility(index)}>
-                      {project.name}
-                    </h3>
-                    {project.demo && (
-                      <motion.div whileHover={{ rotate: 45 }} transition={{ duration: 0.2 }}>
-                        <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                          <ArrowUpRight className="w-5 h-5 text-gray-300 cursor-pointer" />
-                        </a>
-                      </motion.div>
-                    )}
-                  </div>
-
-                  {/* Expandable Image */}
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{
-                      height: visibleImages[index] ? "auto" : 0,
-                      opacity: visibleImages[index] ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    {project.hasImage && (
-                      <img
-                        src={`/placeholder.svg?height=160&width=300&query=${project.name} project screenshot`}
-                        alt={project.name}
-                        className="w-full h-40 object-cover rounded-md"
-                      />
-                    )}
-                  </motion.div>
-                </div>
+     <div className="col-start-7 col-end-10 row-start-1 row-end-7 bg-[#0D1215] rounded-3xl">
+  <div className="h-full overflow-y-auto custom-scrollbar p-2">
+    {projects.map((project, index) => (
+      <motion.div
+        key={project.name}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: index * 0.1 }}
+        className={`group ${index !== 0 ? "border-t border-gray-700/40" : ""}`}
+      >
+        <div className="p-6 space-y-4">
+          <div className="flex justify-between items-center cursor-pointer">
+            <h3
+              className="text-lg text-white"
+              onClick={() => toggleImageVisibility(index)}
+            >
+              {project.name}
+            </h3>
+            {project.demo && (
+              <motion.div whileHover={{ rotate: 45 }} transition={{ duration: 0.2 }}>
+                <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                  <ArrowUpRight className="w-5 h-5 text-gray-300 cursor-pointer" />
+                </a>
               </motion.div>
-            ))}
+            )}
           </div>
+
+          {/* Expandable Image */}
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{
+              height: visibleImages[index] ? "auto" : 0,
+              opacity: visibleImages[index] ? 1 : 0,
+            }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            {project.hasImage && (
+              <img
+                src={project.image}
+                alt={project.name}
+                className="w-full h-40 object-cover rounded-md"
+              />
+            )}
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
+    ))}
+  </div>
+</div>
+
 
       {/* Summary */}
       <motion.div
@@ -172,5 +176,6 @@ export default function Portfolio() {
         </div>
       </motion.div>
     </div>
+    </div>  
   )
 }

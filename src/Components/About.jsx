@@ -2,6 +2,7 @@
 import { ChevronDown, Mail, Github, Linkedin, Instagram } from "lucide-react"
 import { motion } from "framer-motion"
 import { useState } from "react"
+import Navbar from "./Navbart"
 
 export default function About() {
   const [skillsOpen, setSkillsOpen] = useState(true)
@@ -19,17 +20,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="col-start-1 col-end-10 row-start-1 row-end-2 flex justify-center items-center bg-[#0D1215] rounded-2xl"
         >
-          <div className="flex gap-12 text-sm tracking-wider">
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              PROJECTS
-            </a>
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              ABOUT
-            </a>
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              CONTACT
-            </a>
-          </div>
+          <Navbar/>
         </motion.nav>
 
         {/* 2. Passionate about text - col 1-5, row 2-6 */}
